@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import AppFunction from "./AppFunction";
 
 ReactDOM.render(
     <React.StrictMode>
         {/*<h1>Test</h1>*/}
-        <App/>
+        {/*<App/>*/}
+        <AppFunction/>
     </React.StrictMode>,
     document.getElementById('root')
 );
