@@ -2,8 +2,17 @@ import React from "react";
 
 // a component is just a function which returns some jsx, some html
 // ES6, function name started with lower case
-const person = () => {
-    return <p>I'm a Person!</p>
+// const person = (props) => {
+//     return <p>I'm {props.name} and I am {props.age} years old!</p>
+// };
+
+const person = (props) => {
+    return (
+      <div>
+          <p>I'm {props.name} and I am {props.age} years old!</p>
+          <p>{props.children}</p>
+      </div>
+    );
 };
 
 export default person;
