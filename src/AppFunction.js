@@ -37,7 +37,9 @@ const AppFunction = props => {
             <Person
                 name={personsState.persons[1].name}
                 age={personsState.persons[1].age}
-            />
+            >
+                Hobbies: SDE
+            </Person>
             <Person
                 name={personsState.persons[2].name}
                 age={personsState.persons[2].age}
