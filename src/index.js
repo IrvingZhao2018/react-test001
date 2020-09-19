@@ -8,8 +8,8 @@ import AppFunction from "./AppFunction";
 ReactDOM.render(
     <React.StrictMode>
         {/*<h1>Test</h1>*/}
-        {/*<App/>*/}
-        <AppFunction/>
+        <App/>
+        {/*<AppFunction/>*/}
     </React.StrictMode>,
     document.getElementById('root')
 );
