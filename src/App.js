@@ -27,13 +27,13 @@ class App extends Component {
         otherState: 'some other val'
     }
 
-    switchNameHandler = () => {
+    switchNameHandler = (newName) => {
         // console.log('Was clicked!');
         // this.state.persons[0].name = 'MaxMax';
         //Override
         this.setState({
             persons: [
-                {name: 'switched', age: 28},
+                {name: newName, age: 28},
                 {name: 'Irving', age: 18},
                 {name: 'Dummy', age: 99}
             ]
@@ -46,13 +46,17 @@ class App extends Component {
             <div className="App">
                 <h1>Hi, I'm a React App</h1>
                 <p> This works! </p>
-                <button onClick={this.switchNameHandler}>Switch Name</button>
+                <button onClick={this.switchNameHandler.bind(this, 'SWWWWiched')}>.bind()</button>
                 {/*if this.switchNameHandler(), would call when rendering,*/}
                 {/*but should call when click. Therefore, just use reference here*/}
+
+
+                <button onClick={() => this.switchNameHandler('SWWWWiched')}>Arrow Function</button>
+                {/*inefficient, react can re-render too often*/}
                 <Person
                     name={this.state.persons[0].name}
                     age={this.state.persons[0].age}
-                    click={this.switchNameHandler}
+                    click={this.switchNameHandler.bind(this, 'switched')}
                 />
                 <Person
                     name={this.state.persons[1].name}
