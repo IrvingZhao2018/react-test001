@@ -40,23 +40,32 @@ class App extends Component {
         })
     }
 
+    nameChangedHandler = (event) => {
+        this.setState({
+            persons: [
+                {name: 'Max', age: 28},
+                {name: 'Irving', age: 18},
+                {name: event.target.value, age: 999}
+            ]
+        })
+    }
 
     render() {
         return (
             <div className="App">
                 <h1>Hi, I'm a React App</h1>
                 <p> This works! </p>
-                <button onClick={this.switchNameHandler.bind(this, 'SWWWWiched')}>.bind()</button>
+                <button onClick={this.switchNameHandler.bind(this, 'switched by .bind()')}>.bind()</button>
                 {/*if this.switchNameHandler(), would call when rendering,*/}
                 {/*but should call when click. Therefore, just use reference here*/}
 
 
-                <button onClick={() => this.switchNameHandler('SWWWWiched')}>Arrow Function</button>
+                <button onClick={() => this.switchNameHandler('switched by ArrowFunction')}>Arrow Function</button>
                 {/*inefficient, react can re-render too often*/}
                 <Person
                     name={this.state.persons[0].name}
                     age={this.state.persons[0].age}
-                    click={this.switchNameHandler.bind(this, 'switched')}
+                    click={this.switchNameHandler.bind(this, 'switched on text')}
                 />
                 <Person
                     name={this.state.persons[1].name}
@@ -65,7 +74,9 @@ class App extends Component {
                 <Person
                     name={this.state.persons[2].name}
                     age={this.state.persons[2].age}
+                    changed={this.nameChangedHandler}
                 />
+                <input type="text" onChange={this.nameChangedHandler}/>
             </div>
         );
     }
