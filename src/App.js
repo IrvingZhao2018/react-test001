@@ -53,7 +53,7 @@ class App extends Component {
     togglePersonHandler = () => {
         const doesShowPersons = this.state.showPersons;
         this.setState({
-            persons : this.state.persons,
+            persons: this.state.persons,
             showPersons: !doesShowPersons
         });
     }
@@ -68,6 +68,28 @@ class App extends Component {
             cursor: 'pointer'
         };
 
+        let persons = null;
+
+        if(this.state.showPersons){
+            persons = (
+                <div>
+                    <Person
+                        name={this.state.persons[0].name}
+                        age={this.state.persons[0].age}
+                        click={this.switchNameHandler.bind(this, 'switched on text')}
+                    />
+                    <Person
+                        name={this.state.persons[1].name}
+                        age={this.state.persons[1].age}
+                    >Hobbies: SDE</Person>
+                    <Person
+                        name={this.state.persons[2].name}
+                        age={this.state.persons[2].age}
+                        changed={this.nameChangedHandler}
+                    />
+                </div>
+            );
+        }
         return (
             <div className="App">
                 <h1>Hi, I'm a React App</h1>
@@ -80,29 +102,14 @@ class App extends Component {
                 {/*but should call when click. Therefore, just use reference here*/}
 
 
-                <button onClick={() => this.switchNameHandler('switched by ArrowFunction')}>switch Arrow Function</button>
+                <button onClick={() => this.switchNameHandler('switched by ArrowFunction')}>switch Arrow Function
+                </button>
                 {/*inefficient, react can re-render too often*/}
 
-                <button onClick={() => this.togglePersonHandler()}> show persons </button>
-                {
-                    this.state.showPersons ?
-                        <div>
-                            <Person
-                                name={this.state.persons[0].name}
-                                age={this.state.persons[0].age}
-                                click={this.switchNameHandler.bind(this, 'switched on text')}
-                            />
-                            <Person
-                                name={this.state.persons[1].name}
-                                age={this.state.persons[1].age}
-                            >Hobbies: SDE</Person>
-                            <Person
-                                name={this.state.persons[2].name}
-                                age={this.state.persons[2].age}
-                                changed={this.nameChangedHandler}
-                            />
-                        </div> : null
-                }
+                <button onClick={() => this.togglePersonHandler()}> show persons</button>
+
+                {persons}
+
                 <input type="text" onChange={this.nameChangedHandler}/>
             </div>
         );
