@@ -64,7 +64,8 @@ class App extends Component {
 
     render() {
         const style = {
-            backgroundColor: "white",
+            backgroundColor: "green",
+            color:"white",
             font: 'inherit',
             border: '1x solid blue',
             padding: '8px',
@@ -101,6 +102,8 @@ class App extends Component {
                     {/*/>*/}
                 </div>
             );
+
+            style.backgroundColor = "red";
         }
         return (
             <div className="App">
@@ -117,7 +120,7 @@ class App extends Component {
                 <button onClick={() => this.switchNameHandler('switched by ArrowFunction')}>switch Arrow Function</button>
                 {/*inefficient, react can re-render too often*/}
 
-                <button onClick={() => this.togglePersonHandler()}> show persons</button>
+                <button style={style} onClick={() => this.togglePersonHandler()}> show persons</button>
 
                 {persons}
 
