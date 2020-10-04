@@ -65,7 +65,7 @@ class App extends Component {
     render() {
         const style = {
             backgroundColor: "green",
-            color:"white",
+            color: "white",
             font: 'inherit',
             border: '1x solid blue',
             padding: '8px',
@@ -83,7 +83,7 @@ class App extends Component {
                             name={person.name}
                             age={person.age}
                             key={person.id}
-                            changed ={(event) => this.nameChangedHandler(event, person.id)}
+                            changed={(event) => this.nameChangedHandler(event, person.id)}
                         />
                     })}
                     {/*<Person*/}
@@ -105,28 +105,39 @@ class App extends Component {
 
             style.backgroundColor = "red";
         }
-        return (
-            <div className="App">
-                <h1>Hi, I'm a React App</h1>
-                <p> This works! </p>
-                <button
-                    style={style}
-                    onClick={this.switchNameHandler.bind(this, 'switched by .bind()')}>switch.bind()
-                </button>
-                {/*if this.switchNameHandler(), would call when rendering,*/}
-                {/*but should call when click. Therefore, just use reference here*/}
+
+        let redAndBold = ['red', 'bold'].join(' '); // "red bold"
+        const classes = [];
+        if (this.state.persons.length <= 2) {
+            classes.push('red'); // classes = ['red']
+        }
+        if (this.state.persons.length <= 1){
+            classes.push('bold'); // "red bold"
+        }
+
+            return (
+                <div className="App">
+                    <h1>Hi, I'm a React App</h1>
+                    <p className={classes.join(' ')}> This works! </p>
+                    <button
+                        style={style}
+                        onClick={this.switchNameHandler.bind(this, 'switched by .bind()')}>switch.bind()
+                    </button>
+                    {/*if this.switchNameHandler(), would call when rendering,*/}
+                    {/*but should call when click. Therefore, just use reference here*/}
 
 
-                <button onClick={() => this.switchNameHandler('switched by ArrowFunction')}>switch Arrow Function</button>
-                {/*inefficient, react can re-render too often*/}
+                    <button onClick={() => this.switchNameHandler('switched by ArrowFunction')}>switch Arrow Function
+                    </button>
+                    {/*inefficient, react can re-render too often*/}
 
-                <button style={style} onClick={() => this.togglePersonHandler()}> show persons</button>
+                    <button style={style} onClick={() => this.togglePersonHandler()}> show persons</button>
 
-                {persons}
+                    {persons}
 
-                <input type="text" onChange={this.nameChangedHandler}/>
-            </div>
-        );
+                    <input type="text" onChange={this.nameChangedHandler}/>
+                </div>
+            );
     }
 }
 
